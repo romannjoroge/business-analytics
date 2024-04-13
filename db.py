@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from typing import int, List
+from typing import List
 from datetime import time
 
 engine = create_engine("postgresql://postgres:example@localhost:5560", echo=True)
@@ -52,7 +52,7 @@ class DimEmployees(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column()
     store: Mapped['DimStore'] = relationship(back_populates="employees")
-    dob: Mapped[time] = mapped_column(server_default=time())
+    dob: Mapped[str] = mapped_column(default=time().isoformat())
     sales: Mapped[List['FactSales']] = relationship(back_populates="employee")
 
     def __repr__(self):
@@ -92,8 +92,10 @@ class FactSales(Base):
     employee: Mapped['DimEmployees'] = relationship(back_populates="sales")
     quantity: Mapped[int] = mapped_column()
     price: Mapped[float] = mapped_column()
-    soldAt: Mapped[time] = mapped_column(default=time())
+    soldAt: Mapped[str] = mapped_column(default=time().isoformat())
 
     def __repr__(self):
         return f"<FactSales product: {self.product.name} store: {self.store.name} employee: {self.employee.name} quantity: {self.quantity} price: {self.price} soldAt: {self.soldAtT}"
-    
+
+# Creates the tables    
+Base.metadata.create_all(engine)
