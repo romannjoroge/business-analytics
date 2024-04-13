@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  test-postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./psql:/var/lib/postgresql/data
+    ports:
+      - 5560:5432
