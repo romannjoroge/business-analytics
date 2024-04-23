@@ -8,4 +8,4 @@ services:
     volumes:
       - ./psql:/var/lib/postgresql/data
     ports:
-      - 5560:5432
+      - 5560:5432 
