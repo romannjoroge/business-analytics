@@ -1,0 +1,38 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.outer-box {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 30px;
+    width: 90vw;
+    background-color: grey;
+}
+
+.summary-figures-row {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.barcharts {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.past-5-years{
+    flex: 2;
+}
+
+.top-5 {
+    flex: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 30px;
+}
