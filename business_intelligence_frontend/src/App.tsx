@@ -7,10 +7,11 @@ import { DashboardSummary } from "./components/dashboard-summary";
 
 function App() {
   const [dashboardData, setDashboardData] = useState<DashboardData>();
+  const [state, setState] = useState<string>("New Mexico");
 
   useEffect(() => {
     async function getData() {
-      let data = await getDashboardData('Alabama');
+      let data = await getDashboardData(state);
       setDashboardData(data);
     }
 
@@ -30,7 +31,7 @@ function App() {
             <div className="barcharts">
                 <div className="past-5-years">
                   <Top5BarChart data={dashboardData?.salesForYear ?? []} label="Sales for Past 5 Months" label_identifier="month" value_identifier="sales" legend_label="Sales" background_color='rgba(77, 108, 250, 0.5)' border_color='rgb(77, 108, 250)'/> 
-                  <DashboardSummary state="Alabama"/>
+                  <DashboardSummary state={state}/>
                 </div>
                 <div className="top-5">
                    <div className="top-5-charts"><Top5BarChart data={dashboardData?.topProducts ?? []} label="Top 5 Products" label_identifier="product" value_identifier="sales" legend_label="Sales" background_color='rgba(237, 125, 58, 0.5)' border_color='rgb(237, 125, 58)'/> </div>
