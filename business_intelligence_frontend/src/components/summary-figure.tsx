@@ -1,3 +1,5 @@
+import "../App.css"
+
 interface Props {
     figure: number,
     description: string,
@@ -5,7 +7,7 @@ interface Props {
 export default function SummaryFigure(props: Props) {
     return(
         <div>
-           <p>{props.figure}</p>
+           <p className="summary-figures-numbers">{props.figure}</p>
            <p>{props.description}</p>
         </div>
     );

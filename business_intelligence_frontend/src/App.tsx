@@ -3,6 +3,7 @@ import SummaryFigure from "./components/summary-figure"
 import "./App.css";
 import { useState, useEffect } from "react";
 import { DashboardData, getDashboardData } from "./get-dashboard-data";
+import { DashboardSummary } from "./components/dashboard-summary";
 
 function App() {
   const [dashboardData, setDashboardData] = useState<DashboardData>();
@@ -28,13 +29,14 @@ function App() {
             </div>
             <div className="barcharts">
                 <div className="past-5-years">
-                    <p>Bar Chart Sales For Past 5 Years</p>
+                  <Top5BarChart data={dashboardData?.salesForYear ?? []} label="Sales for Past 5 Months" label_identifier="month" value_identifier="sales" legend_label="Sales" background_color='rgba(77, 108, 250, 0.5)' border_color='rgb(77, 108, 250)'/> 
+                  <DashboardSummary state="Alabama"/>
                 </div>
                 <div className="top-5">
-                   <Top5BarChart/> 
-                   <Top5BarChart/> 
-                   <Top5BarChart/> 
-                   <Top5BarChart/> 
+                   <div className="top-5-charts"><Top5BarChart data={dashboardData?.topProducts ?? []} label="Top 5 Products" label_identifier="product" value_identifier="sales" legend_label="Sales" background_color='rgba(237, 125, 58, 0.5)' border_color='rgb(237, 125, 58)'/> </div>
+                   <div className="top-5-charts"><Top5BarChart data={dashboardData?.topStores ?? []} label="Top 5 Stores" label_identifier="store" value_identifier="sales" legend_label="Sales" background_color='rgba(149, 9, 82, 0.5)' border_color='rgb(149, 9, 82)'/></div> 
+                   <div className="top-5-charts"><Top5BarChart data={dashboardData?.topCategories ?? []} label="Top 5 Categories" label_identifier="category" value_identifier="sales" legend_label="Sales" background_color='rgba(247, 232, 164, 0.5)' border_color='rgb(247, 232, 164)'/></div> 
+                   <div className="top-5-charts"><Top5BarChart data={dashboardData?.topCities ?? []} label="Top 5 Cities" label_identifier="city" value_identifier="sales" legend_label="Sales" background_color='rgba(112, 228, 239, 0.5)' border_color='rgb(112, 228, 239)'/></div> 
                 </div>
             </div>
         </div>
