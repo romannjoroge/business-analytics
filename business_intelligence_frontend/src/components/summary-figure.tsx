@@ -1,8 +1,12 @@
-export default function SummaryFigure() {
+interface Props {
+    figure: number,
+    description: string,
+}
+export default function SummaryFigure(props: Props) {
     return(
         <div>
-           <p>000</p>
-           <p>Some Description</p>
+           <p>{props.figure}</p>
+           <p>{props.description}</p>
         </div>
     );
 }
